@@ -1,0 +1,57 @@
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #f8f9fa;
+    transition: width 0.3s ease-in-out;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar.collapsed {
+    width: 80px;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+}
+
+/* Ensure the button stays inside */
+.toggle-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #333;
+    margin-left: auto; /* Push to the right */
+    padding: 5px;
+    cursor: pointer;
+}
+
+.toggle-btn:hover {
+    color: #007bff;
+}
+
+/* Navigation */
+.nav-link {
+    padding: 10px;
+    color: #333;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link:hover {
+    background: #e9ecef;
+    border-radius: 5px;
+}
+
+

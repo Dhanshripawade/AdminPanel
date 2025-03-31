@@ -1,53 +1,158 @@
-import React, { useState } from 'react';
-import { Navbar, Nav, Button } from 'react-bootstrap';
-import { FaBars, FaHome, FaTachometerAlt, FaUser, FaUserCircle, FaBlog, FaBox } from 'react-icons/fa';
-import './Sidebar.css';
+import React, { useState } from "react";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "./Sidebar.css";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
-    const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
-    const toggleSidebar = () => {
-        setIsCollapsed(!isCollapsed);
-    };
+  const toggleSidebar = () => {
+    setIsCollapsed(!isCollapsed);
+  };
 
-    return (
-        <div className={`sidebar d-flex flex-column ${isCollapsed ? 'collapsed' : ''}`}>
-            {/* Sidebar Header */}
-            <div className="sidebar-header d-flex align-items-center">
-                {/* User Info */}
-                <div className="user-info d-flex align-items-center flex-grow-1">
-                    <FaUserCircle size={25} className="text-secondary me-2" />
-                    {!isCollapsed && <span className="fw-bold">Jaydon Frankie</span>}
-                </div>
+  const closeSidebar = () => {
+    setIsCollapsed(false);
+  };
 
-                {/* Toggle Button - Positioned inside the sidebar */}
-                <Button className="toggle-btn d-lg-none" variant="secondary" onClick={toggleSidebar}>
-                    <FaBars />
-                </Button>
+  return (
+    <>
+      {/* Desktop Sidebar */}
+      <div className="sidebar-container   " >
+        <div className="sidebar d-flex flex-column justify-content-between bg-dark text-white p-4  " style={{height:"100vh"}}>
+          <div>
+            <div className="d-flex align-items-center text-white text-decoration-none">
+              <i className="bi bi-person-circle fs-5 me-2"></i>
+              <span className="fs-5">ADMIN-PANEL</span>
+             
             </div>
-
-            {/* Navigation Links */}
-            <Navbar expand="lg" className="flex-column align-items-start">
-                <Nav className="flex-column w-100">
-                    <Nav.Link href="#home" className="d-flex align-items-center">
-                        <FaHome className="me-2" /> {!isCollapsed && 'Home'}
-                    </Nav.Link>
-                    <Nav.Link href="#dashboard" className="d-flex align-items-center">
-                        <FaTachometerAlt className="me-2" /> {!isCollapsed && 'Dashboard'}
-                    </Nav.Link>
-                    <Nav.Link href="#user" className="d-flex align-items-center">
-                        <FaUser className="me-2" /> {!isCollapsed && 'User'}
-                    </Nav.Link>
-                    <Nav.Link href="#products" className="d-flex align-items-center">
-                        <FaBox className="me-2" /> {!isCollapsed && 'Products'}
-                    </Nav.Link>
-                    <Nav.Link href="#blog" className="d-flex align-items-center">
-                        <FaBlog className="me-2" /> {!isCollapsed && 'Blog'}
-                    </Nav.Link>
-                </Nav>
-            </Navbar>
+            <hr className="text-secondary mt-2" />
+            <ul className="nav nav-pills flex-column p-0 m-0">
+              <li className="nav-item p-1">
+                <Link to="/" className="nav-link text-white">
+                  <i className="bi bi-speedometer me-2 fs-5"></i>
+                  <span className="fs-5">Dashboard</span>
+                </Link>
+              </li>
+              <li className="nav-item p-1">
+                <Link to="user" className="nav-link text-white">
+                  <i className="bi bi-people me-2 fs-5"></i>
+                  <span className="fs-5">User</span>
+                </Link>
+              </li>
+              <li className="nav-item p-1">
+                <Link to="/products" className="nav-link text-white">
+                  <i className="bi  bi-cart4 me-2 fs-5"></i>
+                  <span className="fs-5">Products</span>
+                </Link>
+              </li>
+              <li className="nav-item p-1">
+                <Link to="/blog" className="nav-link text-white">
+                  <i className="bi bi-chat-heart me-2 fs-5"></i>
+                  <span className="fs-5">Blog</span>
+                </Link>
+              </li>
+              {/* <li className="nav-item p-1">
+                <Link to="/wishlists" className="nav-link text-white">
+                  <i className="bi bi-calendar2-heart me-2 fs-5"></i>
+                  <span className="fs-5">Wishlists</span>
+                </Link>
+              </li> */}
+              <li className="nav-item p-1">
+                <Link to="/notfound" className="nav-link text-white">
+                  <i className="bi bi-ban me-2 fs-5"></i>
+                  <span className="fs-5">Not Found</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <hr className="text-secondary" />
+            <Link><i className="bi bi-person fs-5 text-white"></i>
+            <span className="fs-4 text-white">YourSelf</span></Link>
+            
+          </div>
         </div>
-    );
+      </div>
+
+      {/* Mobile Sidebar Toggle Button */}
+      <div className="mobile-toggle">
+        <i
+          
+        className="bi bi-list ms-2 mt-1 fs-5 "
+          style={{ cursor: "pointer" }}
+          onClick={toggleSidebar}
+        ></i>
+      </div>
+
+      {/* Mobile Sidebar */}
+      <div className={`sidebarMbl ${isCollapsed ? "show" : ""}`}>
+        {/* Close Button (X) */}
+        <i
+          className="bi bi-x mx-2 mt-1 fs-5 text-white"
+          style={{ cursor: "pointer" }}
+          onClick={closeSidebar}
+        ></i>
+
+
+        <div className="d-flex flex-column justify-content-between bg-dark text-white p-4 vh-100">
+          <div>
+            <div className="d-flex align-items-center text-white text-decoration-none">
+                  <i className="bi bi-person-circle fs-5"></i>
+                  <span className="fs-5">ADMIN PANEL</span>
+
+            </div>
+            <hr className="text-secondary mt-2" />
+            <ul className="nav nav-pills flex-column p-0 m-0">
+            <li className="nav-item p-1">
+                <Link to="/" className="nav-link text-white">
+                  <i className="bi bi-speedometer me-2 fs-5"></i>
+                  <span className="fs-5">Dashboard</span>
+                </Link>
+              </li>
+              <li className="nav-item p-1">
+                <Link to="user" className="nav-link text-white">
+                  <i className="bi bi-people me-2 fs-5"></i>
+                  <span className="fs-5">User</span>
+                </Link>
+              </li>
+              <li className="nav-item p-1">
+                <Link to="/products" className="nav-link text-white">
+                  <i className="bi  bi-cart4 me-2 fs-5"></i>
+                  <span className="fs-5">Products</span>
+                </Link>
+              </li>
+              <li className="nav-item p-1">
+                <Link to="/blog" className="nav-link text-white">
+                  <i className="bi bi-chat-heart me-2 fs-5"></i>
+                  <span className="fs-5">Blog</span>
+                </Link>
+              </li>
+              {/* <li className="nav-item p-1">
+                <Link to="/wishlists" className="nav-link text-white">
+                  <i className="bi bi-calendar2-heart me-2 fs-5"></i>
+                  <span className="fs-5">Wishlists</span>
+                </Link>
+              </li> */}
+              <li className="nav-item p-1">
+                <Link to="/notfound" className="nav-link text-white">
+                  <i className="bi bi-ban me-2 fs-5"></i>
+                  <span className="fs-5">Not Found</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="text-center">
+            <hr className="text-secondary" />
+            <Link>
+            <i className="bi bi-person fs-5 text-white"></i>
+            <span className="fs-5 text-white text-decoration-none">YourSelf</span></Link>
+           
+
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default Sidebar;

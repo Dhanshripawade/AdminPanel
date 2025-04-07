@@ -18,7 +18,6 @@ const NotFoundPage = () => {
               <img src="https://free.minimals.cc/assets/illustrations/illustration-404.svg" alt="" />
             </div>
           </div>
-
           <Button variant="dark" href="/">
             Go to home
           </Button>

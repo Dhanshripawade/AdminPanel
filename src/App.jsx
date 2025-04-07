@@ -4,7 +4,7 @@ import Dashboard from "./Components/DashboardPages/Dashboard";
 import Products from "./Components/DashboardPages/Products";
 import User from "./Components/DashboardPages/User";
 import Blog from "./Components/DashboardPages/Blog";
-import Wishlists from "./Components/DashboardPages/Wishlists";
+// import Wishlists from "./Components/DashboardPages/Wishlists";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Navbar1 from "./Components/Navbar/Navbar";

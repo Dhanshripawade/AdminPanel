@@ -17,13 +17,14 @@ function Sidebar() {
   return (
     <>
       {/* Desktop Sidebar */}
-      <div className="sidebar-container   " >
+      <div className="sidebar-container fixed  " >
         <div className="sidebar d-flex flex-column justify-content-between bg-dark text-white p-4  " style={{height:"100vh"}}>
           <div>
             <div className="d-flex align-items-center text-white text-decoration-none">
+              <Link to= "/" className="nav-link text-white">
               <i className="bi bi-person-circle fs-5 me-2"></i>
               <span className="fs-5">ADMIN-PANEL</span>
-             
+              </Link>
             </div>
             <hr className="text-secondary mt-2" />
             <ul className="nav nav-pills flex-column p-0 m-0">
@@ -51,12 +52,7 @@ function Sidebar() {
                   <span className="fs-5">Blog</span>
                 </Link>
               </li>
-              {/* <li className="nav-item p-1">
-                <Link to="/wishlists" className="nav-link text-white">
-                  <i className="bi bi-calendar2-heart me-2 fs-5"></i>
-                  <span className="fs-5">Wishlists</span>
-                </Link>
-              </li> */}
+              
               <li className="nav-item p-1">
                 <Link to="/notfound" className="nav-link text-white">
                   <i className="bi bi-ban me-2 fs-5"></i>
@@ -67,7 +63,7 @@ function Sidebar() {
           </div>
           <div>
             <hr className="text-secondary" />
-            <Link><i className="bi bi-person fs-5 text-white"></i>
+            <Link to="/" className="nav-link text-white"><i className="bi bi-person fs-5 text-white"></i>
             <span className="fs-4 text-white">YourSelf</span></Link>
             
           </div>
@@ -127,12 +123,7 @@ function Sidebar() {
                   <span className="fs-5">Blog</span>
                 </Link>
               </li>
-              {/* <li className="nav-item p-1">
-                <Link to="/wishlists" className="nav-link text-white">
-                  <i className="bi bi-calendar2-heart me-2 fs-5"></i>
-                  <span className="fs-5">Wishlists</span>
-                </Link>
-              </li> */}
+            
               <li className="nav-item p-1">
                 <Link to="/notfound" className="nav-link text-white">
                   <i className="bi bi-ban me-2 fs-5"></i>
@@ -143,7 +134,7 @@ function Sidebar() {
           </div>
           <div className="text-center">
             <hr className="text-secondary" />
-            <Link>
+            <Link to="/" className="nav-link text-white">
             <i className="bi bi-person fs-5 text-white"></i>
             <span className="fs-5 text-white text-decoration-none">YourSelf</span></Link>
            

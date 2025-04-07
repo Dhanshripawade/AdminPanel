@@ -1,32 +1,26 @@
 import React, { useEffect, useState } from 'react';
-
+import { useDispatch,useSelector } from 'react-redux';
+import { getusers } from '../../stores/user/userThunk';
 import Form from "react-bootstrap/Form";
 import { FormControl, Card, Pagination } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
-import axios from "axios";
 import { BsThreeDotsVertical } from 'react-icons/bs';
 
 function User () {
 
     
 
-    const [users, setUsers] = useState([]);
-    const [loading, setLoading] = useState(true);
+     const dispatch = useDispatch();
+     const {users, status, error } = useSelector((state) => state.user);
+     
     const [currentPage, setCurrentPage] = useState(1);
     const [postPerPage] = useState(8);
 
-    useEffect(() => {
-        axios
-            .get("https://dummyjson.com/users")
-            .then((response) => {
-                setUsers(response.data.users);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-                setLoading(false);
-            });
-    }, []);
+    useEffect(() =>
+      {
+        dispatch(getusers());
+      },[dispatch])
+   
 
     const lastPostIndex = currentPage * postPerPage;
     const firstPostIndex = lastPostIndex - postPerPage;
@@ -40,10 +34,6 @@ function User () {
         
            
            <div >
-      
-
-
-                
                 <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mt-4 mb-3">
                     <h4>Users</h4>
                     <button className="btn btn-dark mt-2 mt-md-0">+ New User</button>
@@ -91,11 +81,19 @@ function User () {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {loading ? (
+                                    {status === "loading" ? (
                                         <tr>
                                             <td colSpan="6" className="text-center">Loading...</td>
                                         </tr>
-                                    ) : (
+                                    ) : status === "failed" ? 
+                                     (
+           
+                                        <tr>
+                                            <td colSpan={6} className='text-center text-danger'>
+                                                {error}
+                                            </td>
+                                        </tr>
+                                     ): (
                                         currentPosts.map((user) => (
                                             <tr key={user.id}>
                                                 <td>{user.firstName} {user.lastName}</td>

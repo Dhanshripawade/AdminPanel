@@ -165,3 +165,17 @@ function Home() {
 };
 
 export default Home;
+
+
+ // const [title, setTitle] = useState("");
+  // const [description, setDescription] = useState("");
+  // const handleSubmit = () => {
+  //   if (title && description) {
+  // console.log("Title",title ,   "description",    description)
+     
+  //     dispatch(postposts({ title, body: description }));
+  //     setTitle("");
+  //     setDescription("");
+  //     handleClose();
+  //   }
+  // };

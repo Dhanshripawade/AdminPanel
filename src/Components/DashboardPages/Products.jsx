@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Card, Row, Col, Pagination } from "react-bootstrap";
-import { getproducts } from "../../stores/Products/productThunk";
+import { getproducts, postproducts } from "../../stores/Products/productThunk";
+// import {  Button} from "react-bootstrap";
+
+// import Form from "react-bootstrap/Form";
+// import Modal from "react-bootstrap/Modal";
 
 function Products() {
   const dispatch = useDispatch();
@@ -10,6 +14,20 @@ function Products() {
   useEffect(() => {
     dispatch(getproducts());
   }, [dispatch]);
+
+   const [formData, setFormData] = useState({
+      title: "",
+      id: "",
+    });
+
+    
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+          console.log(e);
+         await dispatch(postproducts(formData));
+        
+        handleClose();
+      };
 
   // Pagination 
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,7 +43,7 @@ function Products() {
   return (
     <div>
       <div className="container mt-4">
-        <h3>Products</h3>
+         
 
         {status === "loading" && <p>Loading...</p>}
         {status === "failed" && <p style={{ color: "red" }}>Error: {error}</p>}

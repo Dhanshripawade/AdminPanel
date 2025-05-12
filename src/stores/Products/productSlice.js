@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getproducts } from "./productThunk";
+import { getproducts, postproducts } from "./productThunk";
 
 const initialState = {
   products: [],
@@ -11,12 +11,9 @@ const initialState = {
 const productSlice = createSlice({
   name: "product",
   initialState,
-  reducers: {
-    setFilter: (state, action) => {
-      state.filter = { ...state.filter, ...action.payload };
-    },
-  },
-  extraReducers: (builder) => {
+  reducers: {},
+  //get
+  extraReducers : (builder) => {
     builder
       .addCase(getproducts.pending, (state) => {
         state.status = "loading";
@@ -29,10 +26,28 @@ const productSlice = createSlice({
       .addCase(getproducts.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-      });
+      })
+//post
+ .addCase(postproducts.pending, (state) => {
+         state.status = "loading";
+         state.error = null;
+       })
+       .addCase(postproducts.fulfilled, (state, action) => {
+       state.status = "succeeded";
+         state.products.unshift(action.payload);
+       })
+      .addCase(postproducts.rejected, (state, action) => {
+    state.status = "failed";
+    state.error = action.error.message; 
+    state.products = []; 
+
+      })
+
+
+
   },
 });
 
 
-export const { setFilter } = productSlice.actions;
+
 export default productSlice.reducer;
